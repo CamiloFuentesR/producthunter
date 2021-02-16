@@ -109,11 +109,12 @@ const Producto = () => {
         }
     }
 
-    const agregarComentario = e => {
+    const handleSubmitComentario = e => {
         e.preventDefault();
         if (!usuario) {
             return router.push('/login')
         }
+        if(comentario.mensaje.trim() ==='') return;
         //info extra al comentario
         comentario.usuarioId = usuario.uid;
         comentario.usuarioNombre = usuario.displayName;
@@ -134,6 +135,8 @@ const Producto = () => {
         setConsultarDB(true);
 
     }
+    console.log(comentario)
+
     //revisar que el creador del prod sea el mismo que esta autenticado
     const puedeBorrar = () => {
         if(!usuario) return false;
@@ -182,7 +185,7 @@ const Producto = () => {
                                             <>
                                                 <h2>Agrega tu comentario</h2>
                                                 <form
-                                                    onSubmit={agregarComentario}
+                                                    onSubmit={handleSubmitComentario}
                                                 >
                                                     <Campo>
                                                         <input
