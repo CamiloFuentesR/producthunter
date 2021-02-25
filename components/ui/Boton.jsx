@@ -18,7 +18,7 @@ const Boton = styled.a`
         cursor: pointer;
     }
 
-    @media(max-width:360px){
+    @media(max-width:380px){
         font-size: 50%;
         font-weight: 300;
         max-width: 80px;

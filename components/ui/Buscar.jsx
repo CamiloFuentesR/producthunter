@@ -7,7 +7,7 @@ const InputText = styled.input`
     border: 1px solid  var(--gris3);
     padding: 1rem;
     min-width: 300px;
-    @media(max-width:360px){
+    @media(max-width:380px){
         display:flex;
         min-width:130px;
         max-width:130px;
@@ -35,7 +35,7 @@ const InputSubmit= styled.button`
         cursor: pointer;
     }
 
-    @media(max-width: 360px){
+    @media(max-width: 380px){
         height: 2rem;
         width: 1.9rem;
         background-size: 2.7rem;
