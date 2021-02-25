@@ -17,6 +17,14 @@ const Boton = styled.a`
     &:hover{
         cursor: pointer;
     }
+
+    @media(max-width:360px){
+        font-size: 50%;
+        font-weight: 300;
+        max-width: 80px;
+        max-height: 30px;
+        padding: 5px;
+    }
 `;
 
 export default Boton;

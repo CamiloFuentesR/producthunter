@@ -58,6 +58,7 @@ const NuevoProducto = () => {
             nombre,
             empresa,
             imagenUrl: await handleUpload(),
+            imagePath: urlImagen.lastModified + urlImagen.name,
             url,
             descripcion,
             votos: 0,
@@ -87,6 +88,10 @@ const NuevoProducto = () => {
                         css={css`
                             text-align: center;
                             margin-top: 5rem;
+                            @media(max-width: 360px){
+                                font-size: 2rem;
+                                margin-top: 2rem;
+                            }
                         `}
                     >Nuevo Producto</h1>
                     <Formulario
@@ -133,6 +138,8 @@ const NuevoProducto = () => {
                                     onInput={(e) => handleFile(e)}
                                 />
                             </Campo>
+                            {errores.imagenUrl && <Error>{errores.imagenUrl}</Error>}
+
                             <Campo>
                                 <label htmlFor="url">Url</label>
                                 <input

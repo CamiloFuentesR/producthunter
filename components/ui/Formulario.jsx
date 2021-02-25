@@ -10,6 +10,18 @@ export const Formulario = styled.form`
         font-size: 2rem;
         padding: 2rem;
     }
+    @media(max-width: 360px){
+        min-width: 300px;
+        max-width: 350px;
+        margin-top: 2rem;
+        fieldset{
+        margin: 2rem 0;
+        border: 1px solid #e1e1e1;
+        font-size: 1.4rem;
+        padding: 2rem;
+        max-width: 360px;
+    }
+    }
 `;
 
 export const Campo = styled.div`
@@ -18,7 +30,7 @@ export const Campo = styled.div`
     align-items: center;
     label{
         flex:0 0 150px;
-        font-size: 1.8rem;
+        font-size: 1.1rem;
     }
     input, textarea{
         flex: 1;
@@ -27,6 +39,17 @@ export const Campo = styled.div`
     textarea{
         height: 400px;
 
+    }
+    @media(max-width: 360px){
+        max-width: 100%;
+        label{
+            font-size: 1.6rem;
+            max-width: 80px;
+        }
+        input,textarea{
+            flex:2;
+            max-width: 235px;
+        }
     }
 `;
 

@@ -16,6 +16,20 @@ const Nav = styled.nav`
             margin-right: 0;
         }
     }
+
+    @media(max-width: 360px){
+        padding-left: .1rem;
+        a{
+        font-size: 1.4rem;
+        margin-left: 5px;
+        color: var(--gris2);
+        font-family: 'PT Sans', sans-serif;
+
+        &:last-of-type{
+            margin-right: 0;
+        }
+    }
+    }
 `;
 
 const Navegacion = () => {

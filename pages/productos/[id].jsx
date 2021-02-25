@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FirebaseContext } from '../../firebase';
 import Error404 from '../../components/layouts/404';
@@ -39,8 +39,13 @@ const Producto = () => {
     const [comentario, setComentario] = useState({});
     const [consultarDB, setConsultarDB] = useState(true);
 
-    const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado } = producto;
+    const isMounted = useRef(true);
+
+
+    const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado,imagePath } = producto;
     useEffect(() => {
+         if (isMounted.current) {
+
         if (id && consultarDB) {
 
             const obtenerProducto = async () => {
@@ -58,6 +63,10 @@ const Producto = () => {
             }
             obtenerProducto();
         }
+    }
+        return () => {
+                    isMounted.current = false;
+                }
     }, [id, consultarDB])
 
     if (Object.keys(producto).length === 0 && !error) return 'Cargando...';
@@ -135,7 +144,6 @@ const Producto = () => {
         setConsultarDB(true);
 
     }
-    console.log(comentario)
 
     //revisar que el creador del prod sea el mismo que esta autenticado
     const puedeBorrar = () => {
@@ -154,6 +162,7 @@ const Producto = () => {
         }
         try {
             await firebase.db.collection('productos').doc(id).delete();
+            await firebase.storage.ref(`productos/${imagePath}`).delete();
             router.push('/');
         } catch (error) {
             console.log(error);

@@ -7,6 +7,14 @@ const InputText = styled.input`
     border: 1px solid  var(--gris3);
     padding: 1rem;
     min-width: 300px;
+    @media(max-width:360px){
+        display:flex;
+        min-width:130px;
+        max-width:130px;
+        max-height: 25px;
+        font-size: 10px;
+
+    }
 `;
 
 const InputSubmit= styled.button`
@@ -25,6 +33,12 @@ const InputSubmit= styled.button`
 
     &:hover{
         cursor: pointer;
+    }
+
+    @media(max-width: 360px){
+        height: 2rem;
+        width: 1.9rem;
+        background-size: 2.7rem;
     }
 `;
 
@@ -52,6 +66,9 @@ const Buscar = () => {
             onSubmit={buscarProducto}
             css={css`
                 position:relative;
+                @media(max-width:360){
+                    position:fixed;
+                }
             `}
         >
             <InputText 
