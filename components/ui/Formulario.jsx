@@ -10,7 +10,7 @@ export const Formulario = styled.form`
         font-size: 2rem;
         padding: 2rem;
     }
-    @media(max-width: 420px){
+    @media(max-width: 450px){
         min-width: 300px;
         max-width: 350px;
         margin-top: 2rem;
@@ -40,7 +40,7 @@ export const Campo = styled.div`
         height: 400px;
 
     }
-    @media(max-width: 420px){
+    @media(max-width: 450px){
         max-width: 100%;
         label{
             font-size: 1.6rem;

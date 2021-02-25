@@ -25,7 +25,7 @@ const Logo = styled.a`
     font-weight: 700;
     font-family: 'Roboto Slab', serif;
     margin-right: 2rem;
-    @media(max-width:420px){
+    @media(max-width:450px){
         font-size: 3rem;
         margin-right: 5px
     }

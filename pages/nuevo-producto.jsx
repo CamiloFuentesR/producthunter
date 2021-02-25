@@ -88,7 +88,7 @@ const NuevoProducto = () => {
                         css={css`
                             text-align: center;
                             margin-top: 5rem;
-                            @media(max-width: 420px){
+                            @media(max-width: 450px){
                                 font-size: 2rem;
                                 margin-top: 2rem;
                             }
