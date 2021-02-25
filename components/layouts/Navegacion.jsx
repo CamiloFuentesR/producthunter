@@ -17,7 +17,7 @@ const Nav = styled.nav`
         }
     }
 
-    @media(max-width: 380px){
+    @media(max-width: 420px){
         padding-left: .1rem;
         a{
         font-size: 1.4rem;
