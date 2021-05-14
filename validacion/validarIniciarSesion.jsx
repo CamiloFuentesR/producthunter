@@ -1,4 +1,6 @@
 export default function validarIniciarSesion(valores) {
+
+
     let errores = {};
 
     ///vldiar el email

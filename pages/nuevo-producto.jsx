@@ -27,7 +27,7 @@ const NuevoProducto = () => {
     const [urlImagen, setUrlImagen] = useState('');
 
     const [error, setError] = useState(false);
-    const { valores, errores, handleSubmit, handleChange, handleBlur,setLoading,loading } = useValidacion(STATE_INICIAL, validarCrearProducto, crearProducto)
+    const { valores, errores, handleSubmit, handleChange, handleBlur, setLoading, loading } = useValidacion(STATE_INICIAL, validarCrearProducto, crearProducto)
     const { nombre, empresa, imagenUrl, url, descripcion } = valores;
     //hook de routing para redireccionar
     const router = useRouter();
@@ -43,7 +43,7 @@ const NuevoProducto = () => {
         const uploadTask = await firebase.storage.ref(`productos/${urlImagen.lastModified}${urlImagen.name}`).put(urlImagen);
         const downloadURL = await uploadTask.ref.getDownloadURL();
         return downloadURL
-      }
+    }
 
     // Solo se ejecuta cuando esta validado el formulario grax al customHooks
     async function crearProducto() {
@@ -68,7 +68,7 @@ const NuevoProducto = () => {
                 id: usuario.uid,
                 nombre: usuario.displayName
             },
-            haVotado : []
+            haVotado: []
         }
         //insertarlo en la bdd
         await firebase.db.collection('productos').add(producto);
@@ -76,16 +76,16 @@ const NuevoProducto = () => {
         return router.push('/');
     }
 
-    
+
     return (
         <div>
             <Layout>
-                {!usuario ? <Error404/> : (
-                    loading ? <Loading/>
-                    :
-                <>
-                    <h1
-                        css={css`
+                {!usuario ? <Error404 /> : (
+                    loading ? <Loading />
+                        :
+                        <>
+                            <h1
+                                css={css`
                             text-align: center;
                             margin-top: 5rem;
                             @media(max-width: 450px){
@@ -93,90 +93,90 @@ const NuevoProducto = () => {
                                 margin-top: 2rem;
                             }
                         `}
-                    >Nuevo Producto</h1>
-                    <Formulario
-                        onSubmit={handleSubmit}
-                        noValidate
-                    >
-                        <fieldset>
-                            <legend>Informacion General</legend>
-                            <Campo>
-                                <label htmlFor="nombre">Nombre</label>
-                                <input
-                                    type="text"
-                                    id="nombre"
-                                    autoComplete="off"
-                                    placeholder="Nombre del producto"
-                                    name="nombre"
-                                    value={nombre}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                            </Campo>
-                            {errores.nombre && <Error>{errores.nombre}</Error>}
-                            <Campo>
-                                <label htmlFor="empresa">Empresa</label>
-                                <input
-                                    type="text"
-                                    id="empresa"
-                                    autoComplete="off"
-                                    placeholder="Tú empresa"
-                                    name="empresa"
-                                    value={empresa}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                            </Campo>
-                            {errores.empresa && <Error>{errores.empresa}</Error>}
-                            <Campo>
-                                <label htmlFor="imagen">Imagen</label>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    id="image"
-                                    name="image"
-                                    onInput={(e) => handleFile(e)}
-                                />
-                            </Campo>
-                            {errores.imagenUrl && <Error>{errores.imagenUrl}</Error>}
+                            >Nuevo Producto</h1>
+                            <Formulario
+                                onSubmit={handleSubmit}
+                                noValidate
+                            >
+                                <fieldset>
+                                    <legend>Informacion General</legend>
+                                    <Campo>
+                                        <label htmlFor="nombre">Nombre</label>
+                                        <input
+                                            type="text"
+                                            id="nombre"
+                                            autoComplete="off"
+                                            placeholder="Nombre del producto"
+                                            name="nombre"
+                                            value={nombre}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </Campo>
+                                    {errores.nombre && <Error>{errores.nombre}</Error>}
+                                    <Campo>
+                                        <label htmlFor="empresa">Empresa</label>
+                                        <input
+                                            type="text"
+                                            id="empresa"
+                                            autoComplete="off"
+                                            placeholder="Tú empresa"
+                                            name="empresa"
+                                            value={empresa}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </Campo>
+                                    {errores.empresa && <Error>{errores.empresa}</Error>}
+                                    <Campo>
+                                        <label htmlFor="imagen">Imagen</label>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            id="image"
+                                            name="image"
+                                            onInput={(e) => handleFile(e)}
+                                        />
+                                    </Campo>
+                                    {errores.imagenUrl && <Error>{errores.imagenUrl}</Error>}
 
-                            <Campo>
-                                <label htmlFor="url">Url</label>
-                                <input
-                                    type="url"
-                                    id="url"
-                                    autoComplete="off"
-                                    placeholder="Url de tu producto"
-                                    name="url"
-                                    value={url}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    <Campo>
+                                        <label htmlFor="url">Url</label>
+                                        <input
+                                            type="url"
+                                            id="url"
+                                            autoComplete="off"
+                                            placeholder="Url de tu producto"
+                                            name="url"
+                                            value={url}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </Campo>
+                                    {errores.url && <Error>{errores.url}</Error>}
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Sobre tu Producto</legend>
+                                    <Campo>
+                                        <label htmlFor="descripcion">Descripción</label>
+                                        <textarea
+                                            id="descripcion"
+                                            autoComplete="off"
+                                            name="descripcion"
+                                            value={descripcion}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </Campo>
+                                    {errores.descripcion && <Error>{errores.descripcion}</Error>}
+                                </fieldset>
+                                <InputSubmit
+                                    type="submit"
+                                    value="Crear Producto"
                                 />
-                            </Campo>
-                            {errores.url && <Error>{errores.url}</Error>}
-                        </fieldset>
-                        <fieldset>
-                            <legend>Sobre tu Producto</legend>
-                            <Campo>
-                                <label htmlFor="descripcion">Descripción</label>
-                                <textarea
-                                    id="descripcion"
-                                    autoComplete="off"
-                                    name="descripcion"
-                                    value={descripcion}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                            </Campo>
-                            {errores.descripcion && <Error>{errores.descripcion}</Error>}
-                        </fieldset>
-                        <InputSubmit
-                            type="submit"
-                            value="Crear Producto"
-                        />
-                    </Formulario>
-                </>
-                ) }
+                            </Formulario>
+                        </>
+                )}
             </Layout>
         </div>
     )

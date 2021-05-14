@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import useIsMounted from 'react-is-mounted-hook';
 import { FirebaseContext } from '../firebase';
 
 const useProductosBusqueda = (orden, q) => {
@@ -6,6 +7,8 @@ const useProductosBusqueda = (orden, q) => {
     const [productos, setProductos] = useState([]);
     const { firebase } = useContext(FirebaseContext);
     const [filtrar, setFiltrar] = useState([]);
+    const isMount = useIsMounted()
+
     // useEffect(() => {
     //     const obtenerProductos = () => {
     //         firebase.db.collection('productos').orderBy(orden, 'desc').onSnapshot(manejarSnapShot)
@@ -18,22 +21,25 @@ const useProductosBusqueda = (orden, q) => {
             
             obtenerProductos();
         } */
-        if (q || productos) {
-            
-            function filtrarDatos(productos, q) {
-                const filtro = productos.filter(producto => (
-                    producto.nombre.toLowerCase().includes(q) ||
-                    producto.descripcion.toLowerCase().includes(q)
-                    ));
-                    setFiltrar(filtro);
-                }
-                filtrarDatos(productos, q);
-                const obtenerProductos = () => {
-                    // firebase.db.collection('productos').orderBy(orden, 'desc').onSnapshot(manejarSnapShot)
-                    firebase.db.collection('productos').orderBy('nombre').startAt(`${q}`).endAt(`${q} \uf8ff`).onSnapshot(manejarSnapShot) //onSnapshot es para detectar cambios en tiempo real
-                }
+        if(isMount){
+
+            if (q || productos ) {
+                
+                function filtrarDatos(productos, q) {
+                    const filtro = productos.filter(producto => (
+                        producto.nombre.toLowerCase().includes(q) ||
+                        producto.descripcion.toLowerCase().includes(q)
+                        ));
+                        setFiltrar(filtro);
+                    }
+                    filtrarDatos(productos, q);
+                    const obtenerProductos = () => {
+                        // firebase.db.collection('productos').orderBy(orden, 'desc').onSnapshot(manejarSnapShot)
+                        firebase.db.collection('productos').orderBy('nombre').startAt(`${q}`).endAt(`${q} \uf8ff`).onSnapshot(manejarSnapShot) //onSnapshot es para detectar cambios en tiempo real
+                    }
+            }
         }
-    }, [q,productos]);
+    }, [q,productos,isMount]);
 
 
     function manejarSnapShot(snapshot) {

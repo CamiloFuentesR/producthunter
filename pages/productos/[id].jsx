@@ -46,7 +46,7 @@ const Producto = () => {
     const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado,imagePath } = producto;
     useEffect(() => {
 
-        if (id && consultarDB) {
+        if (id && consultarDB && isMounted) {
 
             const obtenerProducto = async () => {
 

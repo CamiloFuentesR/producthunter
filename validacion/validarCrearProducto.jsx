@@ -1,6 +1,9 @@
 export default function validarCrearProducto(valores) {
+
+
     let errores = {};
     console.log(valores);
+    
     //validar el nombre del usuario
     if (!valores.nombre) {
         errores.nombre = "El nombre es obligatorio"
@@ -15,7 +18,7 @@ export default function validarCrearProducto(valores) {
     //validar la url
     if (!valores.url) {
         errores.url = "La url del producto es obligatoria"
-    }else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(valores.url)){
+    } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(valores.url)) {
         errores.url = "La url no es válida"
     }
     //validar la descripcion
@@ -23,7 +26,7 @@ export default function validarCrearProducto(valores) {
         errores.descripcion = "La descripcion es obligatoria"
     }
 
-   
+
 
 
     return errores
