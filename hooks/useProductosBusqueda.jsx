@@ -14,13 +14,26 @@ const useProductosBusqueda = (orden, q) => {
     // }, []);
 
     useEffect(() => {
-        if(q)
-        {const obtenerProductos = () => {
-            // firebase.db.collection('productos').orderBy(orden, 'desc').onSnapshot(manejarSnapShot)
-            firebase.db.collection('productos').orderBy('nombre').startAt(`${q}`).endAt(`${q} \uf8ff`).onSnapshot(manejarSnapShot)
+      /*   if (q) {
+            
+            obtenerProductos();
+        } */
+        if (q || productos) {
+            
+            function filtrarDatos(productos, q) {
+                const filtro = productos.filter(producto => (
+                    producto.nombre.toLowerCase().includes(q) ||
+                    producto.descripcion.toLowerCase().includes(q)
+                    ));
+                    setFiltrar(filtro);
+                }
+                filtrarDatos(productos, q);
+                const obtenerProductos = () => {
+                    // firebase.db.collection('productos').orderBy(orden, 'desc').onSnapshot(manejarSnapShot)
+                    firebase.db.collection('productos').orderBy('nombre').startAt(`${q}`).endAt(`${q} \uf8ff`).onSnapshot(manejarSnapShot) //onSnapshot es para detectar cambios en tiempo real
+                }
         }
-        obtenerProductos();}
-    }, [q]);
+    }, [q,productos]);
 
 
     function manejarSnapShot(snapshot) {
@@ -33,9 +46,8 @@ const useProductosBusqueda = (orden, q) => {
         setProductos(productos);
     }
 
-    useEffect(() => {
+   /*  useEffect(() => {
         if (q || productos) {
-            
 
             function filtrarDatos(productos, q) {
                 const filtro = productos.filter(producto => (
@@ -47,7 +59,7 @@ const useProductosBusqueda = (orden, q) => {
             filtrarDatos(productos, q);
         }
 
-    }, [q, productos])
+    }, [q, productos]) */
 
     return {
         productos,

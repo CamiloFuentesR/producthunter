@@ -9,6 +9,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
 import { Campo, InputSubmit } from '../../components/ui/Formulario';
 import Boton from '../../components/ui/Boton';
+import useIsMounted from 'react-is-mounted-hook';
 
 const ContenedorProducto = styled.div`
     @media(min-width: 768px){
@@ -39,12 +40,11 @@ const Producto = () => {
     const [comentario, setComentario] = useState({});
     const [consultarDB, setConsultarDB] = useState(true);
 
-    const isMounted = useRef(true);
-
+    // const isMounted = useRef(true);
+    const isMounted = useIsMounted();
 
     const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado,imagePath } = producto;
     useEffect(() => {
-         if (isMounted.current) {
 
         if (id && consultarDB) {
 
@@ -52,7 +52,7 @@ const Producto = () => {
 
                 const res = await firebase.db.collection('productos').doc(id);
                 const producto = await res.get();
-                if (producto.exists) {
+                if (producto.exists || isMounted()) {
                     setProducto(producto.data());
                     setConsultarDB(false);
                     setError(false);
@@ -63,22 +63,24 @@ const Producto = () => {
             }
             obtenerProducto();
         }
-    }
-        return () => {
-                    isMounted.current = false;
-                }
-    }, [id, consultarDB])
-
-    if (Object.keys(producto).length === 0 && !error) return 'Cargando...';
-
-    //Administrar y valida los votos
-    const votarProducto = () => {
-        if (!usuario) {
-            return router.push('/login')
-        }
-
-        //Verificar si usuario actual ha votado
-        if (haVotado.includes(usuario.uid)) return;
+        isMounted(false)
+        // return () => {
+            //             isMounted.current = false;
+            //         }
+        }, [id,producto,isMounted])
+        
+        if (Object.keys(producto).length === 0 && !error) return 'Cargando...';
+        
+        //Administrar y valida los votos
+        const votarProducto = () => {
+            if (!usuario) {
+                return router.push('/login')
+            }
+            
+            
+            //Verificar si usuario actual ha votado
+            if (haVotado?.includes(usuario.uid)) return;
+        
 
         //obtener y sumar un nuevo voto
         const nuevoTotal = votos + 1;

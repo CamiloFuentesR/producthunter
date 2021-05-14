@@ -18,6 +18,13 @@ const DescripcionProducto = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 2rem;
+
+    @media(max-width:450px){
+        flex: 5 5 300px;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap:1rem;
+    }
 `;
 
 const Titulo = styled.a`
@@ -27,12 +34,18 @@ const Titulo = styled.a`
     &:hover{
         cursor:pointer;
     }
+    @media(max-width:450px){
+        font-size:1.5rem;
+    }
 `;
 
 const TextoDescripcion = styled.p`
     font-size: 1.6rem;
     margin: 0;
     color: #888;
+    @media(max-width:450px){
+        font-size:1.4
+    }
 `;
 
 const Comentarios = styled.div`
@@ -58,6 +71,9 @@ const Comentarios = styled.div`
             margin: 0;
         }
     }
+    @media(max-width:450px){
+        
+    }
 `;
 
 const Votos = styled.div`
@@ -73,10 +89,19 @@ const Votos = styled.div`
         font-size: 2rem;
         font-weight: 700;
     }
+    @media(max-width:450px){
+        
+    }
 `;
 
 const Imagen = styled.img`
     width: 200px;
+    @media(max-width: 450px){
+        width:500px;
+    }
+    @media(max-width:450px){
+        
+    }
 
 `;
 

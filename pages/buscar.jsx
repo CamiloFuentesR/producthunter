@@ -4,6 +4,7 @@ import DetallesProducto from '../components/layouts/DetallesProducto';
 import Layout from '../components/layouts/Layout';
 import useProductos from '../hooks/useProductos';
 import {css} from '@emotion/react';
+import useIsMounted from 'react-is-mounted-hook';
 
 const Buscar = () => {
 
@@ -16,11 +17,11 @@ const Buscar = () => {
     const { productos} = useProductos('votos');
     const [resultado, setResultado] = useState([]);
     // const {productos} = useProductosBusqueda('votos',q);
-
+    const isMounted = useIsMounted();
 
     useEffect(() => {
         //transformar toda la busqueda en minuscula
-        if(q)
+        if(q && isMounted)
         {const busqueda = q.toLowerCase();
         const filtro = productos.filter(producto=> (
             producto.nombre.toLowerCase().includes(busqueda) ||
@@ -29,7 +30,8 @@ const Buscar = () => {
 
         setResultado(filtro);
         }
-    }, [q, productos])
+     
+    }, [q, productos,isMounted])
 
     return (
         <div>
