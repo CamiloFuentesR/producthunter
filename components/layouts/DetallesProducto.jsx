@@ -117,49 +117,49 @@ const DetallesProducto = ({
     imagenUrl,
     votos
 }) => {
-    const [setRef,visible] =  useOnScreen({threshold: .1});
+    const [setRef, visible] = useOnScreen({ threshold: .1 });
 
     return (
         <>
-        
-        <Producto>
-            {
-                visible ? (
-                <>
-                <DescripcionProducto>
-                <div>
-                         <Imagen src={imagenUrl} alt="" />
-                </div>
-                <div>
-                    {/* productos es el nobre de la carpeta, se debe crear */}
-                    <Link href="/productos/[id]" as={`/productos/${id}`} >
-                        <Titulo>{nombre}</Titulo>
-                    </Link>
-                    <TextoDescripcion>{descripcion}</TextoDescripcion>
-                    <Comentarios>
-                        <div>
-                            <img src="/static/img/comentario.png" alt="img" />
-                            <p>{comentarios.length} Comentarios</p>
-                        </div>
-                    </Comentarios>
-                    <p>Publicado hace: {formatDistanceToNow(new Date(creado), { locale: es })}</p>
-                </div>
-            </DescripcionProducto>
-            <Votos>
-                <div>&#9650;</div>
-                <p>{votos}</p>
-            </Votos>
-            </>
-            )
-                :
-                <span ref={setRef}></span>
 
-            }
-            
-        </Producto>
-       
-        
-        
+            <Producto>
+                {
+                    visible ? (
+                        <>
+                            <DescripcionProducto>
+                                <div>
+                                    <Imagen src={imagenUrl} alt="" />
+                                </div>
+                                <div>
+                                    {/* productos es el nobre de la carpeta, se debe crear */}
+                                    <Link href="/productos/[id]" as={`/productos/${id}`} >
+                                        <Titulo>{nombre}</Titulo>
+                                    </Link>
+                                    <TextoDescripcion>{descripcion.substr(0, 100) + '...'}</TextoDescripcion>
+                                    <Comentarios>
+                                        <div>
+                                            <img src="/static/img/comentario.png" alt="img" />
+                                            <p>{comentarios.length} Comentarios</p>
+                                        </div>
+                                    </Comentarios>
+                                    <p>Publicado hace: {formatDistanceToNow(new Date(creado), { locale: es })}</p>
+                                </div>
+                            </DescripcionProducto>
+                            <Votos>
+                                <div>&#9650;</div>
+                                <p>{votos}</p>
+                            </Votos>
+                        </>
+                    )
+                        :
+                        <span ref={setRef}></span>
+
+                }
+
+            </Producto>
+
+
+
         </>
     )
 }

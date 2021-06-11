@@ -1,4 +1,5 @@
 export default function validarCrearCuenta(valores) {
+    
     let errores = {};
 
     //validar el nombre del usuario

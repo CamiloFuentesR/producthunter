@@ -13,7 +13,6 @@ const useProductos = orden => {
                 firebase.db.collection('productos').orderBy(orden,'desc').onSnapshot(manejarSnapShot)//onSnapshot es para detectar cambios en tiempo real
             }
             obtenerProductos();
-
         }
         isMount(false)
     }, [isMount]);
