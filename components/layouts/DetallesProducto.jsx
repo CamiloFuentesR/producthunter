@@ -6,7 +6,7 @@ import Link from 'next/link';
 import useOnScreen from '../../hooks/useOnScreen';
 
 const Producto = styled.li`
-    @media (max-width: 400px){
+    @media (max-width: 450px){
         display: flex;
         flex-direction: column;
         border-bottom: 2px solid grey;

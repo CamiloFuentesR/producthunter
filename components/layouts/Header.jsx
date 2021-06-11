@@ -9,7 +9,7 @@ import Boton from '../ui/Boton';
 import { FirebaseContext } from '../../firebase';
 
 const ContenedorHeader = styled.div`
-    @media(max-width: 400px){
+    @media(max-width: 450px){
     width: 100%auto;
     margin: 0 10px;
     display: flex;
