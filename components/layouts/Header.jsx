@@ -6,9 +6,16 @@ import { css } from '@emotion/react'
 import Buscar from '../ui/Buscar'
 import Navegacion from './Navegacion'
 import Boton from '../ui/Boton';
-import {FirebaseContext} from '../../firebase';
+import { FirebaseContext } from '../../firebase';
 
 const ContenedorHeader = styled.div`
+    @media(max-width: 400px){
+    width: 100%auto;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    };
+
     max-width: 1200px;
     width: 95%auto;
     margin: 0 auto;
@@ -33,13 +40,14 @@ const Logo = styled.a`
 
 const Header = () => {
 
-    const {usuario,firebase} = useContext(FirebaseContext);
+    const { usuario, firebase } = useContext(FirebaseContext);
 
     return (
         <header
             css={css`
                 border-bottom: 2px solid var(--gris3);
                 padding: 1rem 0;
+
             `}
         >
             <ContenedorHeader>
@@ -47,6 +55,7 @@ const Header = () => {
                     css={css`
                     display: flex;
                     align-items: center;
+                    width: 100%;
                     
                 `}
                 >
@@ -70,7 +79,7 @@ const Header = () => {
                             </p>
                             <Boton
                                 bgColor={true}
-                                onClick={()=> firebase.cerrarSesion()}
+                                onClick={() => firebase.cerrarSesion()}
                             >Cerrar Sesión
                             </Boton>
                         </>

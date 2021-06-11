@@ -43,7 +43,7 @@ const Producto = () => {
     // const isMounted = useRef(true);
     const isMounted = useIsMounted();
 
-    const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado,imagePath } = producto;
+    const { comentarios, creado, descripcion, empresa, nombre, url, imagenUrl, votos, creador, haVotado, imagePath } = producto;
     useEffect(() => {
 
         if (id && consultarDB && isMounted) {
@@ -65,22 +65,22 @@ const Producto = () => {
         }
         isMounted(false)
         // return () => {
-            //             isMounted.current = false;
-            //         }
-        }, [id,producto,isMounted])
-        
-        if (Object.keys(producto).length === 0 && !error) return 'Cargando...';
-        
-        //Administrar y valida los votos
-        const votarProducto = () => {
-            if (!usuario) {
-                return router.push('/login')
-            }
-            
-            
-            //Verificar si usuario actual ha votado
-            if (haVotado?.includes(usuario.uid)) return;
-        
+        //             isMounted.current = false;
+        //         }
+    }, [id, producto, isMounted])
+
+    if (Object.keys(producto).length === 0 && !error) return 'Cargando...';
+
+    //Administrar y valida los votos
+    const votarProducto = () => {
+        if (!usuario) {
+            return router.push('/login')
+        }
+
+
+        //Verificar si usuario actual ha votado
+        if (haVotado?.includes(usuario.uid)) return;
+
 
         //obtener y sumar un nuevo voto
         const nuevoTotal = votos + 1;
@@ -125,7 +125,7 @@ const Producto = () => {
         if (!usuario) {
             return router.push('/login')
         }
-        if(comentario.mensaje.trim() ==='') return;
+        if (comentario.mensaje.trim() === '') return;
         //info extra al comentario
         comentario.usuarioId = usuario.uid;
         comentario.usuarioNombre = usuario.displayName;
@@ -149,17 +149,17 @@ const Producto = () => {
 
     //revisar que el creador del prod sea el mismo que esta autenticado
     const puedeBorrar = () => {
-        if(!usuario) return false;
+        if (!usuario) return false;
 
-        if(creador.id === usuario.uid){
+        if (creador.id === usuario.uid) {
             return true;
         }
     }
 
     // elimina un producto de la bdd
     const eliminarProducto = async () => {
-        if(!usuario) return router.push('/login');
-        if(creador.id !== usuario.uid){
+        if (!usuario) return router.push('/login');
+        if (creador.id !== usuario.uid) {
             return router.push('/');
         }
         try {
@@ -220,7 +220,7 @@ const Producto = () => {
                                     {
                                         comentarios.length === 0
                                             ? 'Aún no hay comentarios'
-                                            : 
+                                            :
                                             (
                                                 <ul>
                                                     {comentarios.map((comentario, index) => (
@@ -274,11 +274,11 @@ const Producto = () => {
                                 </aside>
                             </ContenedorProducto>
                             {
-                                puedeBorrar() 
+                                puedeBorrar()
                                 &&
                                 <Boton
                                     onClick={eliminarProducto}
-                                >Eliminar Producto</Boton> 
+                                >Eliminar Producto</Boton>
                             }
                         </div>
                 }

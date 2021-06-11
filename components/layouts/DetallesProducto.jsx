@@ -6,11 +6,18 @@ import Link from 'next/link';
 import useOnScreen from '../../hooks/useOnScreen';
 
 const Producto = styled.li`
-    padding: 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #e1e1e1;   
+    @media (max-width: 400px){
+        display: flex;
+        flex-direction: column;
+        border-bottom: 2px solid grey;
+    };
+    @media (min-width: 1000px){
+        padding: 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #e1e1e1;   
+    }
 `;
 
 const DescripcionProducto = styled.div`
@@ -21,9 +28,9 @@ const DescripcionProducto = styled.div`
 
     @media(max-width:450px){
         flex: 5 5 300px;
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap:1rem;
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
     }
 `;
 

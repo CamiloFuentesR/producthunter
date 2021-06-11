@@ -3,7 +3,14 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { FirebaseContext } from "../../firebase";
 
+const Container = styled.div`
+    @media(max-width: 400px){
+        display:flex;
+    }
+`
+
 const Nav = styled.nav`
+@media(min-width: 1000px){
     padding-left: 2rem;
 
     a{
@@ -15,16 +22,18 @@ const Nav = styled.nav`
         &:last-of-type{
             margin-right: 0;
         }
-    }
+    };
+};
 
     @media(max-width: 450px){
         padding-left: .1rem;
+        display: flex;
+        flex-direction:row;
         a{
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         margin-left: 5px;
         color: var(--gris2);
         font-family: 'PT Sans', sans-serif;
-
         &:last-of-type{
             margin-right: 0;
         }
@@ -38,17 +47,23 @@ const Navegacion = () => {
 
     return (
         <Nav>
-            <Link href="/">
-                <a>Inicio</a> 
-            </Link>
-            <Link href="/populares">
-               <a>Populares</a> 
-            </Link>
-            {usuario && (
-                <Link href="/nuevo-producto">
-                   <a>Nuevo Producto</a> 
+            <Container>
+                <Link href="/">
+                    <a>Inicio</a>
                 </Link>
-            )}
+            </Container>
+            <Container>
+                <Link href="/populares">
+                    <a>Populares</a>
+                </Link>
+            </Container>
+            <Container>
+                {usuario && (
+                    <Link href="/nuevo-producto">
+                        <a>Nuevo Producto</a>
+                    </Link>
+                )}
+            </Container>
         </Nav>
     );
 }

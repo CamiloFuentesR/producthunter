@@ -12,7 +12,7 @@ const Home = () => {
         <div>
 
         <Head>
-            <title>Product Hunter</title>
+            <title>Publica Todo</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
 
