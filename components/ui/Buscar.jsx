@@ -8,10 +8,8 @@ const InputText = styled.input`
     padding: 1rem;
     min-width: 300px;
     @media(max-width:450px){
-        display:flex;
         min-width:130px;
         max-width:130px;
-        max-height: 25px;
         font-size: 10px;
 
     }

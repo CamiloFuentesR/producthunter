@@ -6,13 +6,19 @@ import { FirebaseContext } from "../../firebase";
 const Container = styled.div`
     @media(max-width: 450px){
         display:flex;
+        flex-wrap: wrap;
+    }
+    @media(min-width: 450px){
+        display:flex;
+        flex-direction: row;
     }
 `
 
 const Nav = styled.nav`
 @media(min-width: 1000px){
     padding-left: 2rem;
-
+    display: flex;
+    flex-direction: row;
     a{
         font-size: 1.8rem;
         margin-left: 2rem;
@@ -26,6 +32,7 @@ const Nav = styled.nav`
 };
 
     @media(max-width: 450px){
+        width: 100%;
         padding-left: .1rem;
         display: flex;
         flex-direction:row;

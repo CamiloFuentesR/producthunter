@@ -10,6 +10,8 @@ const Producto = styled.li`
         display: flex;
         flex-direction: column;
         border-bottom: 2px solid grey;
+        background-color: white;
+        margin-bottom: 20px;
     };
     @media (min-width: 1000px){
         padding: 4rem;
@@ -17,6 +19,8 @@ const Producto = styled.li`
         justify-content: space-between;
         align-items: center;
         border: 1px solid #e1e1e1;   
+        background-color: white;
+        margin-bottom: 20px;
     }
 `;
 
