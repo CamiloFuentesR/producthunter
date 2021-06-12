@@ -9,8 +9,8 @@ const InputText = styled.input`
     min-width: 300px;
     @media(max-width:450px){
         min-width:130px;
-        max-width:130px;
-        font-size: 10px;
+        max-width:160px;
+        font-size: 14px;
 
     }
 `;
@@ -37,6 +37,8 @@ const InputSubmit= styled.button`
         height: 2rem;
         width: 1.9rem;
         background-size: 2.7rem;
+        top:5px;
+
     }
 `;
 
@@ -74,7 +76,7 @@ const Buscar = () => {
                 placeholder="Buscar productos"
                 onChange={e=> setBusqueda(e.target.value)}
             />
-            <InputSubmit type="submit">Buscar</InputSubmit>
+            <InputSubmit type="submit"/>
         </form>
     );
 }

@@ -107,6 +107,7 @@ const Votos = styled.div`
 
 const Imagen = styled.img`
     width: 200px;
+    cursor: pointer;
     @media(max-width: 450px){
         width:500px;
     }
@@ -139,7 +140,9 @@ const DetallesProducto = ({
                         <>
                             <DescripcionProducto>
                                 <div>
-                                    <Imagen src={imagenUrl} alt="" />
+                                    <Link href="/productos/[id]" as={`/productos/${id}`} >
+                                        <Imagen src={imagenUrl} alt="" />
+                                    </Link>
                                 </div>
                                 <div>
                                     {/* productos es el nobre de la carpeta, se debe crear */}

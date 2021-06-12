@@ -22,7 +22,7 @@ const Home = () => {
                         {
                             productos.length > 0
                             ?
-                        <ul className="">
+                        <ul>
                             {productos.map(producto => (
                                 <DetallesProducto
                                     key={producto.id}
